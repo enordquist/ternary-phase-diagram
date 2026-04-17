@@ -31,10 +31,31 @@ ax.set_xlim(0, 1)
 ax.set_ylim(0, 1)
 ax.set_zlim(0, 1)
 
-ax.set_xlabel('X', fontweight='bold')
-ax.set_ylabel('Y', fontweight='bold')
-ax.set_zlabel('Z', fontweight='bold')
+ax.set_xlabel('X', fontweight='bold', color=(1,0,0))
+ax.set_ylabel('Y', fontweight='bold', color=(0,1,0))
+ax.set_zlabel('Z', fontweight='bold', color=(0,0,1))
+
+ax.tick_params(axis='x', colors=(1,0,0))
+ax.tick_params(axis='y', colors=(0,1,0))
+ax.tick_params(axis='z', colors=(0,0,1))
+
+ax.xaxis.line.set_color((1,0,0,0.0))
+ax.yaxis.line.set_color((0,1,0,0.0))
+ax.zaxis.line.set_color((0,0,1,0.0))
 
 ax.view_init(elev=25, azim=45, roll=0)
+
+ax.xaxis._axinfo["grid"]['color'] = (1, 0, 0, 0.5)
+ax.yaxis._axinfo["grid"]['color'] = (0, 1, 0, 0.5)
+ax.zaxis._axinfo["grid"]['color'] = (0, 0, 1, 0.5)
+
+ax.xaxis._axinfo["grid"]['linewidth'] = 0.5
+ax.yaxis._axinfo["grid"]['linewidth'] = 0.5
+ax.zaxis._axinfo["grid"]['linewidth'] = 0.5
+
+for t in np.linspace(0, 1, 6):
+  ax.plot([t, t],   [0, 1-t], [1-t, 0], color=(1,0,0,0.5))
+  ax.plot([0, 1-t], [t, t],   [1-t, 0], color=(0,1,0,0.5))
+  ax.plot([0, 1-t], [1-t, 0], [t, t],   color=(0,0,1,0.5))
 
 plt.show()
